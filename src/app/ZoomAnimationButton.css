@@ -1,0 +1,18 @@
+.zoom-in {
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1.2); /* Increase scale for zoom effect */
+  @media (max-width: 768px) {
+    /* Adjust scale for smaller screens */
+    transform: scale(1);
+  }
+}
+
+.zoom-out {
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1); /* Default scale */
+
+  @media (max-width: 768px) {
+    /* Adjust scale for smaller screens */
+    transform: scale(0.8);
+  }
+}
