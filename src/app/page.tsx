@@ -19,9 +19,13 @@ const IndexPage: NextPage = () => {
   const [showMoonInfo, setShowMoonInfo] = useState(false);
   const [responseData, setResponseData] = useState<ResponseData | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedDay, setSelectedDay] = useState("");
+  const currentDate = new Date();
+  const currentYears = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1; // Note: Month is zero-indexed, so adding 1
+  const currentDay = currentDate.getDate();
+  const [selectedYear, setSelectedYear] = useState(currentYears.toString());
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth.toString());
+  const [selectedDay, setSelectedDay] = useState(currentDay.toString());
 
   useEffect(() => {
     // Check if the ref is assigned before accessing its current property
@@ -42,6 +46,7 @@ const IndexPage: NextPage = () => {
   };
   const handleClick = async () => {
     try {
+      setShowMoonInfo(false);
       console.log("Selected year:", selectedYear);
       console.log("Selected month:", selectedMonth);
       console.log("Selected day:", selectedDay);
