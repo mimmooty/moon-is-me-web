@@ -148,7 +148,7 @@ const IndexPage: NextPage = () => {
         <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 lg:mb-8 text-violet-600 font-pacifico relative z-10">
           Moon is Me
         </h1>
-        <h5 className="text-base md:text-lg lg:text-xl font-bold mb-4 md:mb-6 lg:mb-8 text-violet-200 relative z-10">
+        <h5 className="text-base md:text-lg lg:text-xl font-bold text-violet-200 relative z-10">
           Discover Your Birthday Moon Shape
         </h5>
         <div className="min-h-10"></div>
