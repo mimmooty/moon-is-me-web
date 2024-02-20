@@ -2,10 +2,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
-import moon from "../../public/image/moon.png";
+import moon from "../../public/image/full_moon.png";
 import vivid from "../../public/image/vivid.png";
 import star from "../../public/image/Star at night.png";
-import waxinggibbous_moon from "../../public/image/waxinggibbous_bright.png";
 import "./ZoomAnimationButton.css";
 
 type ResponseData = {
