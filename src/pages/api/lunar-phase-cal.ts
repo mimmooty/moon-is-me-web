@@ -1,13 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import calculateMoonPhase from "../../utils/moonPhaseCalculator";
+import newMoonCal from "@/utils/newMoonCalculator";
+import nextNewMoonCal from "@/utils/nextNewMoonCalculator";
+import moonPhase30DaysCal from "@/utils/moonPhase30DaysCalculator";
 type ResponseData = {
   image: string;
-  topic: string;
-  content: string;
+  topic1: string;
+  topic2: string;
+  content1: string;
+  content2: string;
+  content3: string;
 };
 interface MoonPhase {
   name: string;
   image_path: string;
+  topic1: string;
+  topic2: string;
+  content1: string;
+  content2: string;
+  content3: string;
 }
 export default function handler(
   req: NextApiRequest,
@@ -32,8 +43,12 @@ export default function handler(
     parseInt(month) - 1,
     parseInt(day)
   );
-  const lunarPhase: MoonPhase = calculateMoonPhase(dateObject);
 
+  const lunarPhase: MoonPhase = calculateMoonPhase(dateObject);
+  console.log("newMoonCal " + newMoonCal(dateObject));
+  console.log("nextNewMoonCal " + nextNewMoonCal(dateObject));
+
+  console.log("moonPhase30DaysCal " + moonPhase30DaysCal(dateObject));
   // Log the result
   console.log(
     "Lunar phase on " + date + dateObject.toDateString() + ": " + lunarPhase
@@ -43,8 +58,10 @@ export default function handler(
   // For demonstration purposes, we'll return static data
   res.status(200).json({
     image: "/image/" + lunarPhase.image_path,
-    topic: lunarPhase.name,
-    content:
-      "At this point in its lunar cycle, the moon was 10.7 days old and appeared 82.91% illuminated. Its tilt was 155.469° and its distance from Earth was about 363,511.88 km. Astrologically, the moon was in the sign of Libra on this day.",
+    topic1: lunarPhase.topic1,
+    topic2: lunarPhase.topic2,
+    content1: lunarPhase.content1,
+    content2: lunarPhase.content2,
+    content3: lunarPhase.content3,
   });
 }

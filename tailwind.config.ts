@@ -22,6 +22,9 @@ const config = {
         pacifico: ['"Pacifico"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        myblue: {
+          950: "#0D0149", // Adding custom color
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

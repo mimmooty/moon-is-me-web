@@ -2,15 +2,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
-import moon from "../../public/image/full_moon.png";
-import vivid from "../../public/image/vivid.png";
+import homep4 from "../../public/image/home p4.png";
+import newmoon from "../../public/image/new moon p1.png";
 import star from "../../public/image/Star at night.png";
 import "./ZoomAnimationButton.css";
 
 type ResponseData = {
   image: string;
-  topic: string;
-  content: string;
+  topic1: string;
+  topic2: string;
+  content1: string;
+  content2: string;
+  content3: string;
 };
 
 const IndexPage: NextPage = () => {
@@ -116,107 +119,137 @@ const IndexPage: NextPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-indigo-950">
-      <div className="relative flex flex-col items-center justify-center min-h-screen bg-indigo-950">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-myblue-950">
+      {/* Section1 */}
+      <div className="relative min-h-screen bg-myblue-950 flex flex-col items-center justify-center">
         <Image
           src={star}
           width={600}
           height={600}
           alt="image"
           className={
-            isHovered
-              ? "absolute object-cover zoom-in"
-              : "absolute object-cover zoom-out"
+            (isHovered ? "object-cover zoom-in" : "object-cover zoom-out") +
+            " absolute z-1"
           }
         />
-        <Image
-          src={moon}
-          width={400}
-          height={400}
-          alt="Picture of the author"
-          className="absolute object-cover"
-        />
-        <Image
-          src={vivid}
-          width={150}
-          height={150}
-          alt="Picture of the author"
-          className="absolute top-1 m-4"
-        />
-        <nav className="absolute top-0 right-0 m-4">
-          {/* Add your menu items here */}
-        </nav>
-        <div className="min-h-20"></div>
-        <div className="min-h-10"></div>
-        <div className="min-h-10"></div>
-        <div className="min-h-10"></div>
-        <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 lg:mb-8 text-violet-600 font-pacifico relative z-10">
-          Moon is Me
-        </h1>
-        <h5 className="text-base md:text-lg lg:text-xl font-bold text-violet-200 relative z-10">
-          Discover Your Birthday Moon Shape
-        </h5>
-        <div className="min-h-10"></div>
-        <div className="min-h-10"></div>
-        <div className="flex">
-          <select
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            className="mr-2 p-2 border border-gray-300 rounded relative z-10"
-          >
-            {years}
-          </select>
-          <select
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
-            className="mr-2 p-2 border border-gray-300 rounded relative z-10"
-          >
-            {months.map((month) => (
-              <option key={month.value} value={month.value}>
-                {month.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={selectedDay}
-            onChange={(e) => setSelectedDay(e.target.value)}
-            className="mr-2 p-2 border border-gray-300 rounded relative z-10"
-          >
-            {dates}
-          </select>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl relative">
+          <div className="relative">
+            <Image
+              src={newmoon}
+              width={600}
+              height={600}
+              alt="Picture of the t-shirt"
+              className="object-cover hidden md:block"
+            />
+          </div>
+          <div className="flex flex-col items-center justify-center space-y-4">
+            {/* Conditionally render homep3 on smaller screens */}
+            <Image
+              src={homep4}
+              width={1200}
+              height={1200}
+              alt="Picture of the t-shirt"
+              className="object-cover md:hidden"
+            />
+            <Image
+              src={homep4}
+              width={1200}
+              height={1200}
+              alt="Picture of the t-shirt"
+              className="object-cover hidden md:block"
+            />
+            <div className="flex flex-wrap justify-center gap-2">
+              <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                className="p-2 border border-gray-300 rounded"
+              >
+                {years}
+              </select>
+              <select
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="p-2 border border-gray-300 rounded"
+              >
+                {months.map((month) => (
+                  <option key={month.value} value={month.value}>
+                    {month.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={selectedDay}
+                onChange={(e) => setSelectedDay(e.target.value)}
+                className="p-2 border border-gray-300 rounded"
+              >
+                {dates}
+              </select>
+              <button
+                onClick={handleClick}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className="px-4 py-2 bg-blue-700 text-white rounded"
+              >
+                Generate Moon Shape
+              </button>
+            </div>
+          </div>
         </div>
-        <button
-          onClick={handleClick}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="button m-4 md:m-6 lg:m-8 px-4 py-2 bg-blue-700 text-white rounded relative z-10"
-        >
-          click me
-        </button>
       </div>
+      {/* Section2 */}
       {showMoonInfo && responseData && (
         <div
           ref={moonSectionRef}
-          className="relative flex flex-col items-left justify-center min-h-screen bg-gray-800 text-white"
+          className="relative flex flex-col items-left justify-center min-h-screen text-white"
         >
-          <Image
-            src={`${responseData.image}`}
-            width={350}
-            height={350}
-            alt="Picture of the author"
-          />
-          <h2 className="text-base md:text-lg lg:text-xl font-bold m-4 md:m-6 lg:m-8text-violet-200 relative z-10">
-            {responseData.topic}
-          </h2>
-          <p className="text-base md:text-lg lg:text-xl m-4 md:m-6 lg:m-8 relative z-10">
-            {responseData.content}
-          </p>
-          <button
-            onClick={backBtn}
-            className="button m-4 md:m-6 lg:m-8 px-4 py-2 bg-blue-700 text-white rounded max-w-xs"
-          >
-            Go Back
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl relative">
+            <div></div>
+            <div>
+              <h2 className="text-lg md:text-xl lg:text-2xl text-white text-center relative z-10">
+                {responseData.topic1}
+              </h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center relative z-10">
+                {responseData.topic2}
+              </h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl relative">
+            <div className="flex justify-center">
+              <div className="max-w-xs">
+                <Image
+                  src={`${responseData.image}`}
+                  width={350}
+                  height={350}
+                  alt="Picture of the moon"
+                  className="object-cover w-full h-auto sm:w-150 sm:h-150"
+                />
+              </div>
+            </div>
+            <div>
+              <p className="text-base md:text-lg lg:text-xl m-4 md:m-6 lg:m-8 relative z-10 ">
+                {responseData.content1}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-4 w-full max-w-6xl relative">
+                <div>
+                  <p className="text-sm md:text-lg lg:text-xl m-4 md:m-6 lg:m-8 relative z-10 !whitespace-pre-line">
+                    {responseData.content2}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm md:text-lg lg:text-xl m-4 md:m-6 lg:m-8 relative z-10 !whitespace-pre-line">
+                    {responseData.content3}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={backBtn}
+                className="button m-4 md:m-6 lg:m-8 px-4 py-2 bg-blue-700 text-white rounded max-w-xs"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
         </div>
       )}
       {error && <p>{error}</p>}
